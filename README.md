@@ -28,10 +28,19 @@
 
 ### Com a porta 3389 fechada, o Hydra recebeu a resposta “Connection Refused” ou " The connection failed to establish.", impedindo o acesso remoto.
 
-## **Resposta ao incidente** ⚔️
+## **Resposta ao incidente** ⚡
 ### **Erradicação:** 
 ### O processo do Hydra foi interrompido na máquina atacante (Kali Linux);
 
 ### O IP do atacante pode ser automaticamente bloqueado nas tabelas de firewall do host por meio do Active Response do Wazuh;
 
 ### Recomenda-se manter o sistema operacional sempre atualizado e desabilitar o RDP quando não for estritamente necessário.
+
+## **Automação de Defesa (Active Response)** ⚡
+### Foi configurado no Ubuntu(Agent Server) Active Response do Wazuh (ossec.conf) para transformar o SIEM em uma defesa ativa. O sistema monitora falhas de login no Windows (evento 60122) e, ao identificar 4 ou mais tentativas falhas do mesmo IP em curto intervalo, executa automaticamente uma regra de firewall via netsh. Como resultado, o IP atacante é bloqueado por 10 minutos, impedindo novas conexões sem necessidade de intervenção humana.
+
+![alt text](<osse.conf.png>)
+
+![alt text](<kali.png>)
+
+
