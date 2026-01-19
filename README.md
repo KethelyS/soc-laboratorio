@@ -1,4 +1,4 @@
-# LABORATÓRIO SOC 🛡️
+# LABORATÓRIO SOC 
 ### Implementei um SOC Home Lab utilizando Wazuh como SIEM/XDR e simulação de ataque de rede com Kali Linux e Hydra. O laboratório permite detecção em tempo real, alertas centralizados, resposta ativa automática a incidentes.
 
 ## **Arquitetura do Laboratório**
