@@ -17,7 +17,7 @@
 
 ## **Detecção pelo SIEM Wazuh**
 ### Durante a simulação, o SIEM Wazuh detectou o ataque em tempo real, através da análise dos logs de eventos de falha de login, gerando alertas associados ao evento 60122, demonstrando a eficácia do monitoramento e correlação de eventos.
-![alt text](<Imagens/wazuh.png>)
+![alt text](<Imagens/Wazuh.png>)
 
 ## **Resultado do Ataque**
 ### O Firewall do Windows, por padrão, bloqueia conexões de entrada que não estejam explicitamente autorizadas;
