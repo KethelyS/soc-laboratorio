@@ -31,7 +31,7 @@
 ### Foi configurado no Agent Server o Active Response do Wazuh (ossec.conf) para transformar o SIEM em uma defesa ativa. O sistema monitora falhas de login no Windows (evento 60122) e, ao identificar 4 ou mais tentativas falhas do mesmo IP em curto intervalo, executa automaticamente uma regra de firewall via netsh. Como resultado, o IP atacante é bloqueado por 10 minutos, impedindo novas conexões sem necessidade de intervenção humana.
 
 ### (Ubuntu agent server)
-![alt text](<imagens/osse.conf.png>)
+![alt text](<imagens/ossec.conf.png>)
 ### (Testando ataque com hydra novamente é possível ver as tentativas de login param de receber respostas do servidor após 4 tentativas provando que o IP do atacante foi banido em tempo real pelo Firewall do Windows.")
 ![alt text](<imagens/kali.png>)
 
