@@ -6,20 +6,18 @@
 ### Endpoint Monitorado: Windows 11 com Wazuh Agent
 ### Máquina Atacante: Kali Linux utilizando Hydra
 
-![Diagrama de Arquitetura](arquiteturaSOC.png)
+![Diagrama de Arquitetura](imagens/arquiteturaSOC.png)
 
 ## **Simulação de Ataque – Força Bruta via RDP**
 ### Para fins educacionais, foi realizada uma simulação de ataque de força bruta via RDP (porta 3389) utilizando o Kali Linux e a ferramenta Hydra, com o seguinte comando:
 
 **hydra -l administrador -P /usr/share/wordlists/fasttrack.txt -t 4 (IP) rdp**
 
-![alt text](<hydra.png>)
+![alt text](<imagens/hydra.png>)
 
 ## **Detecção pelo SIEM Wazuh**
 ### Durante a simulação, o SIEM Wazuh detectou o ataque em tempo real, através da análise dos logs de eventos de falha de login, gerando alertas associados ao evento 60122, demonstrando a eficácia do monitoramento e correlação de eventos.
-![alt text](<Wazuh.png>)
-### Em Detalhes do documento ".logontype" o  Windows registrou isso como um logon interativo local.
-![alt text](<Wazuh2.png>)
+![alt text](<imagens/Wazuh.png>)
 
 ## **Resultado do Ataque**
 ### O Firewall do Windows, por padrão, bloqueia conexões de entrada que não estejam explicitamente autorizadas;
@@ -28,20 +26,13 @@
 
 ### Com a porta 3389 fechada, o Hydra recebeu a resposta “Connection Refused” ou " The connection failed to establish.", impedindo o acesso remoto.
 
-## **Resposta ao incidente** ⚡
-### **Erradicação:** 
-### O processo do Hydra foi interrompido na máquina atacante (Kali Linux);
-
-### O IP do atacante pode ser automaticamente bloqueado nas tabelas de firewall do host por meio do Active Response do Wazuh;
-
-### Recomenda-se manter o sistema operacional sempre atualizado e desabilitar o RDP quando não for estritamente necessário.
 
 ## **Automação de Defesa (Active Response)** ⚡
-### Foi configurado no Agetnt Server o Active Response do Wazuh (ossec.conf) para transformar o SIEM em uma defesa ativa. O sistema monitora falhas de login no Windows (evento 60122) e, ao identificar 4 ou mais tentativas falhas do mesmo IP em curto intervalo, executa automaticamente uma regra de firewall via netsh. Como resultado, o IP atacante é bloqueado por 10 minutos, impedindo novas conexões sem necessidade de intervenção humana.
+### Foi configurado no Agent Server o Active Response do Wazuh (ossec.conf) para transformar o SIEM em uma defesa ativa. O sistema monitora falhas de login no Windows (evento 60122) e, ao identificar 4 ou mais tentativas falhas do mesmo IP em curto intervalo, executa automaticamente uma regra de firewall via netsh. Como resultado, o IP atacante é bloqueado por 10 minutos, impedindo novas conexões sem necessidade de intervenção humana.
 
 ### (Ubuntu agent server)
-![alt text](<osse.conf.png>)
+![alt text](<imagens/osse.conf.png>)
 ### (Testando ataque com hydra novamente é possível ver as tentativas de login param de receber respostas do servidor após 4 tentativas provando que o IP do atacante foi banido em tempo real pelo Firewall do Windows.")
-![alt text](<kali.png>)
+![alt text](<imagens/kali.png>)
 
 
